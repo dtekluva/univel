@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.43.118',
                 'localhost',
-                'univel_app.pythonanywhere.com']
+                'univelcity.pythonanywhere.com']
 
 
 # Application definition
