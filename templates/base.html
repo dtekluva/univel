@@ -25,7 +25,8 @@
 <div class="navbar-wrapper nav_menu">
   <div class="container">
     <div class="header_section">
-     <div class="logo pull-left"><a href="/"><img src='{% static "images/logo.png" alt="logo" %}' /></a></div>
+     <div class="logo pull-left"><a href="/"><img src='{{ general.logo.url }}' /></a></div>
+     <!-- <div class="logo pull-left"><a href="/"><img src='{% static "images/logo.png" alt="logo" %}' /></a></div> -->
      <div class="navbar navbar-static-top pull-right">
      	
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -55,23 +56,25 @@
   <footer class="footer-bs">
     <div class="container">
       <div class="col-md-3 ftrone">
-       <div class="ftr_logo"><img src="images/logo_v.svg" width="98" alt="footer logo" /></h2>
-       <p>42, Montgomery Road, <br>Yaba, Lagos, Nigeria.</p>
+       <div class="ftr_logo"><img src= '{% static "images/logo_v.svg" %}' width="98" alt="footer logo" /></h2>
+       <p>{{ general.location | safe }}</p>
       </div>
       </div>
       <div class="col-md-3 ftrtwo">
        <h4>Courses</h4>
        <ul class="pages">
-           <li><a href="immersive_courses.html">Immersive Courses</a></li>
-           <li><a href="#">Accelerated Courses</a></li>
+         {% for course in footer_courses %}
+           <li><a href="detailed_course_view/{{course.id}}">{{ course.title }}</a></li>
+           {% endfor %}
+           <!-- <li><a href="#">Accelerated Courses</a></li>
            <li><a href="#">Backend Development</a></li>
-           <li><a href="#">Android Development</a></li>
+           <li><a href="#">Android Development</a></li> -->
        </ul>
       </div>
       <div class="col-md-3 ftrthree">
        <h4>Company</h4>
        <ul>
-        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="/about">About Us</a></li>
         <li><a href="#">Admission</a></li>
         <li><a href="#">Blog</a></li>
         <li><a href="#">Privacy &amp; Policy</a></li>
@@ -79,12 +82,12 @@
       </div>
       <div class="col-md-3 ftrfour">
        <h4>Connect with us</h4>
-       <a href="#" class="input-group">Hello@univelcity.com</a>
-       <p class="input-group">07036188527</p>
+       <a href="#" class="input-group">{{ general.email }}</a>
+       <p class="input-group">{{ general.phone }}</p>
        <div class="social">
-        <a href="http://www.facebook.com/univelcity"><i class="fa fa-facebook-square"></i></a>
-        <a href="http://www.twitter.com/univelcity"><i class="fa fa-twitter"></i></a>
-        <a href="http://www.instagram.com/univelcity"><i class="fa fa-instagram"></i></a>
+        <a href="{{ general.facebook }}"><i class="fa fa-facebook-square"></i></a>
+        <a href="{{ general.twitter }}"><i class="fa fa-twitter"></i></a>
+        <a href="{{ general.insta }}"><i class="fa fa-instagram"></i></a>
        </div>
       </div>
     </div>

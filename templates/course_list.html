@@ -7,8 +7,8 @@
 
 <div class="page_heading">
   <div class="page_name">
-   <h1>Immersive Courses</h1>
-   <p>We Accelerate Your Career in Tech</p>
+   <h1>{{courses.0.category}}</h1>
+   <p>{{courses.0.category.description}}</p>
   </div>
  <span class="bg_inner_pages"></span>
  <img src= '{% static "images/imm_img.png" %}' alt="img" />
@@ -19,8 +19,8 @@
  <div class="container padLR">
  <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Courses</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Immersive courses</li>
+    <li class="breadcrumb-item"><a href="/courses">Courses</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{courses.0.category.title}}</li>
   </ol>
 </nav>
  </div>
@@ -31,56 +31,27 @@
  <div class="container">
   <div class="cors_ttl">An eight ( 8 ) weeks bootcamp that help you kick start a career in Tech. <br />( Programming and Design )</div>
   
+  {% for course in courses %}
+
   <div class="col_sive">  
-   <div class="img_sec"><img src="images/rect92.png" alt="img" /></div>
+   <div class="img_sec"><img src='{{ course.image.url }}' alt="img" /></div>
    <div class="detail_sec">
-    <h2>Data Science with Python</h2>
+    <h2>{{ course.title }}</h2>
 	<div class="dateandtime">
-	 <div class="date"><i class="fa fa-calendar"></i> &nbsp;Starts June 5, 2018</div>
-     <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
+	 <div class="date"><i class="fa fa-calendar"></i> &nbsp;Starts {{ course.date }}</div>
+     <div class="time"><i class="fa fa-clock-o"></i> &nbsp;{{ course.time }}</div>
 	</div>
    </div>
    <div class="parra">
-  <p>Learn to start working with cutting-edge libraries and frameworks, gain an understanding of how to write high-quality JavaScript code. Learn to build a dynamic, 
-  front-end to your web application using a modern JavaScript library, and use CSS to layout and style your application…</p>
-  <a href="/detailed_course_view" class="learn_more">Apply Now</a>
+      
+  <p>{{ course.about | truncatechars:350 |safe}}</p>
+  <a href="/detailed_course_view/{{ course.id }}" class="learn_more">Apply Now</a>
   </div>
   </div>
+
+  {% endfor %}
   
-  <div class="col_sive">  
-   <div class="img_sec"><img src="images/rect02.png" alt="img" /></div>
-   <div class="detail_sec">
-    <h2>Product Design</h2>
-	<div class="dateandtime">
-	 <div class="date"><i class="fa fa-calendar"></i> &nbsp;Starts June 5, 2018</div>
-     <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
-	</div>
-   </div>
-   <div class="parra">
-  <p>Our product design course will take you through the basic principles of design in order to ensure you have a solid foundation to build your knowledge and skills on. The course is broke down in to User 
-  Interface (UI) and User Experience (UX) design. The UI section of the course will focus on elements used in web and mobile UI design and how these elements affect the users the interfaces are designed for. The UX section of the course will focus on ...</p>
-  <a href="/detailed_course_view" class="learn_more">Apply Now</a>
-  </div>
-  </div>
-  
-  <div class="col_sive">  
-   <div class="img_sec"><img src="images/rect03.png" alt="img" /></div>
-   <div class="detail_sec">
-    <h2>Backend Development with Node JS</h2>
-	<div class="dateandtime">
-	 <div class="date"><i class="fa fa-calendar"></i> &nbsp;Starts June 5, 2018</div>
-     <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
-	</div>
-   </div>
-   <div class="parra">
-  <p>This course deals with all things server-side. We base the entire course around the NodeJS platform. We start with a brief overview of the Web protocols: HTTP and HTTPS. We examine NodeJS and NodeJS modules: Express for building web servers. 
-  On the database side, we review basic CRUD operations, NoSQL databases, in particular MongoDB and Mongoose for...</p>
-  <a href="frontend_development.html" class="learn_more">Apply Now</a>
-  </div>
-  </div>
-  
-   
-  
+ 
  </div>
 </div>
 

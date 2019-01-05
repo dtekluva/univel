@@ -1,50 +1,80 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
 from itertools import chain #allow for merging multiple querysets frorm different models
 from django.core import serializers
-import math
-import datetime
-from snippet import helpers
+import math, datetime, pytz, json
 from datetime import datetime, timezone
-import pytz
 from django.contrib.auth.decorators import login_required, permission_required
-
+from snippet import helpers
+from main.models import Carousel, Global, Category, Course, Take_away, Testimonials, Requirement, Center_section, Center_section_cards
 
 # from rest_framework import serializers
 # Create your views here.
 
 host = 'http://localhost:8000/'
 
+#General model is being sent for general data in render
+
 def index(request):
     page = 'index'
-    return render(request, 'index.html', { 'page': page })
+    carousel = Carousel.objects.all()[0]
+    general = Global.objects.all()[0]
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    testimonials = Testimonials.objects.all()
+    center_section = Center_section.objects.all()[0]
+    center_section_cards = Center_section_cards.objects.all()[:3]
+    upcoming_courses = Course.objects.filter(is_upcoming = True)
+
+    return render(request, 'index.html', { 'page': page, 'general':general, 'carousel':carousel, 'footer_courses':footer_courses, 'testimonials' : testimonials, 'center_section':center_section, 'center_section_cards':center_section_cards, 'upcoming_courses':upcoming_courses })
 
 
 def courses(request):
     page = 'courses'
-    return render(request, 'courses.html', { 'page': page })
+    carousel = Carousel.objects.all()[0]
+    general = Global.objects.all()[0]
+    categories = Category.objects.all()
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+
+    return render(request, 'courses.html', { 'page': page, 'general':general, 'carousel':carousel, 'categories':categories, 'footer_courses':footer_courses})
 
 
-def course_list(request):
+def course_list(request,id):
     page = 'course_list'
-    return render(request, 'course_list.html', { 'page': page })
+    general = Global.objects.all()[0]
+    courses = Course.objects.filter(category_id = id)
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    
+
+    return render(request, 'course_list.html', { 'page': page, 'general':general, 'courses':courses, 'footer_courses':footer_courses })
 
 
 def form(request):
-    page = 'form'
-    return render(request, 'form.html', { 'page': page })
+    page    = 'form'
+    general = Global.objects.all()[0]
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+
+    return render(request, 'form.html', { 'page': page, 'general':general, 'footer_courses':footer_courses })
 
 
-def detailed_course_view(request):
-    page = 'detailed_course_view'
-    return render(request, 'detailed_course_view.html', { 'page': page })
+def detailed_course_view(request, id):
+    page        = 'detailed_course_view'
+    category    = Category.objects.get(course__id = id)
+    general     = Global.objects.all()[0]
+    course      = Course.objects.get(pk = id)
+    takeaways   = Take_away.objects.filter(course_id = course.id)
+    requirements = Requirement.objects.filter(course_id = course.id)
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+
+    return render(request, 'detailed_course_view.html', { 'page': page, 'general':general, 'course':course, 'category':category, 'takeaways': takeaways, 'requirements':requirements, 'footer_courses':footer_courses })
 
 
 def about_us(request):
     page = 'about_us'
-    return render(request, 'about_us.html', { 'page': page })
+    general = Global.objects.all()[0]
+    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+
+    return render(request, 'about_us.html', { 'page': page, 'general':general, 'footer_courses':footer_courses })
 
 
 

@@ -13,36 +13,36 @@
   <div class="carousel-inner innerIMG">
      <div class="item active">
     	<div class="container mid_content">
-         <div class="in_tech">We Accelerate Your Career in Tech.</div>
+         <div class="in_tech">{{ carousel.message1 }}</div>
          <div class="right_corse">
           <p class="up_tx">Upcoming Courses!</p>
           <p class="fd_tx">Frontend Development</p>
-          <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
-          <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
-          <a href="frontend_development.html" class="apply_now">Apply Now</a>
+          <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts {{upcoming_courses.0.date}}</div>
+          <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;{{upcoming_courses.0.time}}</div>
+          <a href="/detailed_course_view/{{ upcoming_courses.0.id }}" class="apply_now">Apply Now</a>
          </div>
         </div>
        <a href="#nextpage"><div class="down_arrow"><i class="fa fa-angle-down"></i></div></a>
       <span class="bg_slider"></span>
-      <img src='{% static "images/slider1.png" alt="logo" %}' class="img-responsive" />
+      <img src='{{ carousel.image1.url }}' class="img-responsive" />
       <div class="container">
         <div class="carousel-caption"></div>
       </div>
     </div>
      <div class="item">
     	<div class="container mid_content">
-         <div class="in_tech">Learn How To&nbsp;Code From Scratch.</div>
+         <div class="in_tech">{{ carousel.message2 }}</div>
          <div class="right_corse">
           <p class="up_tx">Upcoming Courses!</p>
           <p class="fd_tx">Backend Development</p>
-          <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
-          <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
-          <a href="frontend_development.html" class="apply_now">Apply Now</a>
+          <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts {{upcoming_courses.1.date}}</div>
+          <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;{{upcoming_courses.0.time}}</div>
+          <a href="/detailed_course_view/{{ upcoming_courses.1.id }}" class="apply_now">Apply Now</a>
          </div>
         </div>
        <div class="down_arrow"><i class="fa fa-angle-down"></i></div>
       <span class="bg_slider"></span>
-      <img src='{% static "images/slider2.png" alt="logo" %}' class="img-responsive" />
+      <img src='{{ carousel.image2.url }}' class="img-responsive" />
       <div class="container">
         <div class="carousel-caption"></div>
       </div>
@@ -53,12 +53,12 @@
          <div class="right_corse">
           <p class="up_tx">Main Campus!</p>
           <div class="date"><i class="fa fa-map-marker"></i> 42 Montgomery Road, Yaba, Lagos, Nigeria</div>
-          <a href="frontend_development.html" class="apply_now">Apply Now</a>
+          <a href="/courses" class="apply_now">Apply Now</a>
          </div>
         </div>
        <div class="down_arrow"><i class="fa fa-angle-down"></i></div>
       <span class="bg_slider"></span>
-      <img src='{% static "images/slider3.png" alt="logo" %}' class="img-responsive" />
+      <img src='{{ carousel.image3.url }}' class="img-responsive" />
       <div class="container">
         <div class="carousel-caption"></div>
       </div>
@@ -68,27 +68,26 @@
 <!-- Accelerate Your Tech Career -->
 <div class="section_accelerate" id="nextpage">
  <div class="container">
-   <h2 class="h2_head">Accelerate Your Tech Career</h2>
-   <p>At Univelcity, you will learn and understand how to code and build great products. We help individuals become world-class developers and companies 
-   to build and discover talents. A partnership with us is a setup for success, so, what are you waiting for?</p>
+   <h2 class="h2_head">{{ center_section.title }}</h2>
+   <p>{{ center_section.description }}</p>
     <div class="row">
      <div class="row_sec">
       <div class="col-md-3">
        <div class="panel panel-default">
-    	<div class="panel-heading"><div class="pnlBG"></div> <span>Build Your Tech Skills With Us</span></div>
-    	<div class="panel-body">Everyday we train interested individuals who are either passionate about tech or just want a carrier in tech from zero to zero.</div>
+    	<div class="panel-heading"><div class="pnlBG"></div> <span>{{ center_section_cards.0.title }}</span></div>
+    	<div class="panel-body">{{ center_section_cards.0.description }}</div>
   	   </div>
       </div>
       <div class="col-md-3">
        <div class="panel panel-default">
-    	<div class="panel-heading"><div class="pnlBG green"></div> <span>Talent Source</span></div>
-    	<div class="panel-body">Top companies hire from us as they are guaranteed quality and disciplined Talent, that don’t just get the job done but are collarative and follow best practice in every take.</div>
+    	<div class="panel-heading"><div class="pnlBG green"></div> <span>{{ center_section_cards.1.title }}</span></div>
+    	<div class="panel-body">{{ center_section_cards.1.description }}</div>
   	   </div>
       </div>
       <div class="col-md-3">
        <div class="panel panel-default">
-    	<div class="panel-heading"><div class="pnlBG blue"></div> <span>Accelerated Learning</span></div>
-    	<div class="panel-body">Using a project-based learning approach we positioned in-class. 8 weeks learning bootcamp in building software and design skills in our students.</div>
+    	<div class="panel-heading"><div class="pnlBG blue"></div> <span>{{ center_section_cards.2.title }}</span></div>
+    	<div class="panel-body">{{ center_section_cards.2.description }}</div>
   	   </div>
       </div>
      </div>
@@ -108,7 +107,7 @@
               <i class="fa fa-angle-right arrow-right"></i>
               <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend Development</h4>
+               <h4>Frontend </h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
@@ -118,7 +117,7 @@
               <i class="fa fa-angle-right arrow-right"></i>
               <div class="imgpart"><img src='{% static "images/upcom03.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend Development</h4>
+               <h4>Frontend D</h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
@@ -132,7 +131,7 @@
               <i class="fa fa-angle-right arrow-right"></i>
               <div class="imgpart"><img src='{% static "images/upcom02.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend Development</h4>
+               <h4>Frontend Deve</h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
@@ -167,18 +166,22 @@
   <div class="testi_sec">
        <div class="carousel slide media-carousel" id="abc">
         <div class="carousel-inner">
-        <div class="item active">
+          {% for testimonial in testimonials %}
+          {% if testimonial.starts_here %}
+          <div class="item active">
+            {% else %}
+            <div class="item ">
+          {% endif %}
          <div class="col-md-7 col-xs-12 contentsec">
-    	<div class="left_img"><img src='{% static "images/testimonial_img.png" %}' alt="img" /></div>
+    	<div class="left_img"><img src='{{ testimonial.image.url }}' alt="img" /></div>
     	<div class="right_body">
-         <h4>Emanuel Obute</h4>
-         <p>Everyday we train interested individuals who are either passionate about tech or just want a carrier in tech from zero to zero.</p>
-         <p>Everyday we train interested individuals who are either passionate about tech or just want a carrier in tech from zero to zero.</p>
-         <p>Everyday we train interested individuals who are either passionate about tech or just want a carrier in tech from zero to zero.</p>
+         <h4>{{ testimonial.last_name }} {{ testimonial.first_name }}</h4>
+         {{ testimonial.text | safe }}
         </div>
       </div>
         </div>
-        <div class="item">
+        {% endfor %}
+        <!-- <div class="item">
          <div class="col-md-7 col-xs-12 contentsec">
     	<div class="left_img"><img src='{% static "images/testimonial_img01.png" %}' alt="img" /></div>
     	<div class="right_body">
@@ -199,7 +202,7 @@
          <p>Everyday we train interested individuals who are either passionate about tech or just want a carrier in tech from zero to zero.</p>
         </div>
       </div>
-        </div>
+        </div> -->
         </div>
         
         <a data-slide="prev" href="#abc" class="leftar carousel-control"><i class="fa fa-angle-left"></i></a>

@@ -5,7 +5,7 @@
 
 <div class="page_heading">
   <div class="page_name">
-   <h1>Frontend Development</h1>
+   <h1>{{ category.title }}</h1>
    <p>We Accelerate Your Career in Tech</p>
   </div>
  <span class="bg_inner_pages"></span>
@@ -17,9 +17,9 @@
  <div class="container padLR">
  <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Courses</a></li>
-    <li class="breadcrumb-item"><a href="#">Immersive courses</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Frontend Development</li>
+    <li class="breadcrumb-item"><a href="../../courses">Courses</a></li>
+    <li class="breadcrumb-item"><a href="../../course_list/{{ category.id }}">{{ category.title }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ course.title }}</li>
   </ol>
 </nav>
  </div>
@@ -32,38 +32,42 @@
      <div class="crse_abt">
       <h2 class="h2_head">About this Course</h2>
       <p>
-   Learn to start working with cutting-edge libraries and frameworks, gain an understanding of how to write high-quality JavaScript code. Learn to build a dynamic, front-end to your web application using a 
-   modern JavaScript library, and use CSS to layout and style your application.</p>
+        {{ course.about }}
+      </p>
    	 </div>
      <div class="tk_awy">
       <h2 class="h2_head">Takeaways</h2>
        <ul>
-        <li><span>Learn HTML &amp; CSS</span></li>
-        <li><span>Introduction To JavaScript</span></li>
+         {% for takeaway in takeaways %}
+        <li><span>{{ takeaway.text }}</span></li>
+        {% endfor %}
+        <!-- <li><span>Introduction To JavaScript</span></li>
         <li><span>How To Use Boostrap</span></li>
-        <li><span>Learn VueJS &amp; API Implementation</span></li>
+        <li><span>Learn VueJS &amp; API Implementation</span></li> -->
        </ul>
    	 </div>
      <div class="tk_awy du_sec">
       <h2 class="h2_head">Duration</h2>
        <ul>
-        <li><span>Eight ( 8 ) weeks of bootcamp</span></li>
+        <li><span>Eight ( {{ course.duration }} ) weeks of bootcamp</span></li>
        </ul>
    	 </div>
      <div class="tk_awy pre_sec">
       <h2 class="h2_head">Prerequisite and Preparation</h2>
        <ul>
-        <li><span>Students should come to class with a laptop that has windows 10 install in it</span></li>
+          {% for requirement in requirements %}
+        <li><span>{{ requirement.text }}</span></li>
+        {% endfor %}
        </ul>
    	 </div>
     </div>
     <div class="col-md-4 pull-right rightSEC">
       <div class="right_section">
        <ul>
-        <li><img src="images/calender.svg" alt="calender" />   <span>Starts June 5, 2018</span></li>
-        <li><img src="images/clock.svg" alt="clock" /> 	 	   <span>10am - 4pm ( mon &amp; wed )</span></li>
-        <li><img src="images/area_pin.svg" alt="area_pin" />   <span>First floor, 42 Montgomery Road, Yaba, Lagos,</span></li>
-        <li><img src="images/price-tag.svg" alt="price-tag" /> <span>Price: 150,000</span></li>
+        <li><img src='{% static "images/calender.svg" %}' alt="calender" /><span>Starts {{ course.date }}</span></li>
+        <li><img src='{% static "images/clock.svg" %}' alt="clock" /> <span>{{ course.time }}</span></li>
+        <li><img src='{% static "images/area_pin.svg" %}' alt="area_pin" /><span>{{ course.address| truncatechars:45 }}</span></li>
+        <li><img src='{% static "images/price-tag.svg" %}' alt="price-tag" /> <span>Price: {{ course.price  }}</span></li>
        </ul>
        <div class="button"><a href="/form">Apply</a></div>
       </div>
