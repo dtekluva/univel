@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from datetime import date, datetime
+from .choices import *
 
 # Create your models here.
 class Global(models.Model):
@@ -99,11 +100,24 @@ class Testimonials(models.Model):
     starts_here     = models.BooleanField(default = True)
     is_active       = models.BooleanField(default = True)
 
+    class Meta:
+        verbose_name_plural = "Testimonials"
+
     def __str__(self):              # __unicode__ on Python 2
         return '{}-{}'.format(self.first_name, self.last_name)
 
 
+class Application(models.Model):
+    full_name      = models.CharField(null = True, max_length=255, default="")
+    email          = models.EmailField(null = True, default="", max_length=200)
+    phone          = models.CharField(null = True, max_length=255, default="")
+    address        = models.TextField(null = True, default="")
+    coupon         = models.CharField(null = True, max_length=255, default="")
+    payment        = models.IntegerField(choices=PAYMENT_CHOICES, default=1) 
+    course         = models.ForeignKey('Course', on_delete=models.CASCADE, default = 1, related_name = 'application')
 
+    def __str__(self):              # __unicode__ on Python 2
+        return '{}'.format(self.full_name)
 
 
 

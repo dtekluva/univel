@@ -7,6 +7,7 @@ import math, datetime, pytz, json
 from datetime import datetime, timezone
 from django.contrib.auth.decorators import login_required, permission_required
 from snippet import helpers
+from .choices import *
 from main.models import Carousel, Global, Category, Course, Take_away, Testimonials, Requirement, Center_section, Center_section_cards
 
 # from rest_framework import serializers
@@ -49,15 +50,15 @@ def course_list(request,id):
     return render(request, 'course_list.html', { 'page': page, 'general':general, 'courses':courses, 'footer_courses':footer_courses })
 
 
-def form(request):
+def form(request, course_id):
     page    = 'form'
     general = Global.objects.all()[0]
     footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    course      = Course.objects.get(pk = course_id)
+    return render(request, 'form.html', { 'page': page, 'general':general, 'footer_courses':footer_courses, 'course':course })
 
-    return render(request, 'form.html', { 'page': page, 'general':general, 'footer_courses':footer_courses })
 
-
-def detailed_course_view(request, id):
+def detailed_course_view(request, id):#ID ---> course__id
     page        = 'detailed_course_view'
     category    = Category.objects.get(course__id = id)
     general     = Global.objects.all()[0]
@@ -77,8 +78,22 @@ def about_us(request):
     return render(request, 'about_us.html', { 'page': page, 'general':general, 'footer_courses':footer_courses })
 
 
+def apply(request, course_id):
+    print((request.POST))
 
+    exempted_fields = ["address", "full_name", "coupon"]
+    cleaned_form = helpers.clean(request.POST, exempted_fields)
 
+    full_name   = cleaned_form['full_name']
+    email       = cleaned_form['email']
+    address     = cleaned_form['address']
+    phone       = cleaned_form['phone']
+    coupon      = cleaned_form['coupon']
+    payment     = dict(PAYMENT_CHOICES)[cleaned_form['choice']]
+    message     = "success"
+
+    
+    return HttpResponse(json.dumps({"response":message}))
 
 
 

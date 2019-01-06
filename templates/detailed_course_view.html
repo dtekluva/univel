@@ -69,7 +69,7 @@
         <li><img src='{% static "images/area_pin.svg" %}' alt="area_pin" /><span>{{ course.address| truncatechars:45 }}</span></li>
         <li><img src='{% static "images/price-tag.svg" %}' alt="price-tag" /> <span>Price: {{ course.price  }}</span></li>
        </ul>
-       <div class="button"><a href="/form">Apply</a></div>
+       <div class="button"><a href="/form/{{course.id}}">Apply</a></div>
       </div>
       
       <div class="get_crs">

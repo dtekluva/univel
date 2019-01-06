@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from main.models import Course, Carousel, Category, Center_section_cards, Center_section, Global, Requirement, Testimonials, Take_away
+from main.models import Course, Carousel, Category, Center_section_cards, Center_section, Global, Requirement, Testimonials, Take_away, Application
 # Register your models here.
 
 class GlobalAdmin(admin.ModelAdmin):
@@ -31,6 +31,9 @@ class Center_section_cardsAdmin(admin.ModelAdmin):
 class TestimonialsAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name', 'text',)
 
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ('full_name','payment','course')
+
 
 
 admin.site.register(Global, GlobalAdmin)
@@ -42,3 +45,4 @@ admin.site.register(Take_away, Take_awayAdmin)
 admin.site.register(Center_section, Center_sectionAdmin)
 admin.site.register(Center_section_cards, Center_section_cardsAdmin)
 admin.site.register(Testimonials, TestimonialsAdmin)
+admin.site.register(Application, ApplicationAdmin)
