@@ -25,6 +25,7 @@ urlpatterns = [
     path('detailed_course_view/<int:id>/', views.detailed_course_view, name='detailed_course_view'),
     path('form/<int:course_id>/', views.form, name='form'),
     path('apply/<int:course_id>/', views.apply, name='apply'),
+    path('upcoming_courses/', views.upcoming_courses, name='upcoming_courses'),
 ]
 
 

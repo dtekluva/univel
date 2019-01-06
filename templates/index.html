@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<script src="{% static "js/upcoming_courses.js" %}"></script>
+
 <!-- Carousel -->
 <div id="myCarousel" class="carousel slide">
   <!-- Indicators -->
@@ -16,7 +18,7 @@
          <div class="in_tech">{{ carousel.message1 }}</div>
          <div class="right_corse">
           <p class="up_tx">Upcoming Courses!</p>
-          <p class="fd_tx">Frontend Development</p>
+          <p class="fd_tx">{{upcoming_courses.0.title}}</p>
           <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts {{upcoming_courses.0.date}}</div>
           <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;{{upcoming_courses.0.time}}</div>
           <a href="/detailed_course_view/{{ upcoming_courses.0.id }}" class="apply_now">Apply Now</a>
@@ -47,6 +49,7 @@
         <div class="carousel-caption"></div>
       </div>
     </div>
+
     <div class="item">
     	<div class="container mid_content">
          <div class="in_tech">Speed Up Your Learning With Us.</div>
@@ -63,6 +66,7 @@
         <div class="carousel-caption"></div>
       </div>
     </div>
+    
   </div>
 </div>
 <!-- Accelerate Your Tech Career -->
@@ -94,14 +98,23 @@
     </div>
  </div>
 </div>
+
+
+<!-- UPCOMING COURSES SECTION -->
 <!-- upcoming_crs -->
 <div class="upcoming_crs">
   <div class="container">
     <div class="col_up">
-    <h2 class="h2_head">All Upcoming Courses</h2>
-      <div class="carousel slide multi-item-carousel" id="theCarousel">
-        <div class="carousel-inner">
+    <h2 class="h2_head">All </h2>
+      <div class="carousel slide" id="theCarousel">
+        <div class="carousel-inner target">
+          
           <div class="item active">
+            <div class="col-xs-12 col-md-6">
+             <div class="recta_box"  id = "trans">
+              <p class ="space">&nbsp;</p>
+             </div>
+            </div>
             <div class="col-xs-12 col-md-6">
              <div class="recta_box">
               <i class="fa fa-angle-right arrow-right"></i>
@@ -113,35 +126,76 @@
                <a href="frontend_development.html">Apply Now</a>
               </div>
              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
              <div class="recta_box">
               <i class="fa fa-angle-right arrow-right"></i>
-              <div class="imgpart"><img src='{% static "images/upcom03.png" %}' alt="img01" /></div>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend D</h4>
+               <h4>Frontend </h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
               </div>
              </div>
             </div>
+            <div class="col-xs-12 col-md-6">
+             <div class="recta_box">
+              <i class="fa fa-angle-right arrow-right"></i>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
+              <div class="contpart">
+               <h4>Frontend </h4>
+               <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
+          	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
+               <a href="frontend_development.html">Apply Now</a>
+              </div>
+             </div>
+            </div>
+           
           </div>
           <div class="item">
             <div class="col-xs-12 col-md-6">
              <div class="recta_box">
               <i class="fa fa-angle-right arrow-right"></i>
-              <div class="imgpart"><img src='{% static "images/upcom02.png" %}' alt="img01" /></div>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend Deve</h4>
+               <h4>Frontend </h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
               </div>
              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
              <div class="recta_box">
               <i class="fa fa-angle-right arrow-right"></i>
-              <div class="imgpart"><img src= '{% static "images/upcom04.png" %}' alt="img01" /></div>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
               <div class="contpart">
-               <h4>Frontend Development</h4>
+               <h4>Frontend </h4>
+               <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
+          	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
+               <a href="frontend_development.html">Apply Now</a>
+              </div>
+             </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+             <div class="recta_box">
+              <i class="fa fa-angle-right arrow-right"></i>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
+              <div class="contpart">
+               <h4>Frontend </h4>
+               <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
+          	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
+               <a href="frontend_development.html">Apply Now</a>
+              </div>
+             </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+             <div class="recta_box">
+              <i class="fa fa-angle-right arrow-right"></i>
+              <div class="imgpart"><img src='{% static "images/upcom01.png" %}' alt="img01" /></div>
+              <div class="contpart">
+               <h4>Frontend </h4>
                <div class="date"><i class="fa fa-calendar"></i> &nbsp;&nbsp;Starts June 5, 2018</div>
           	   <div class="time"><i class="fa fa-clock-o"></i> &nbsp;&nbsp;10am - 4pm ( mon &amp; wed )</div>
                <a href="frontend_development.html">Apply Now</a>
@@ -149,7 +203,11 @@
              </div>
             </div>
           </div>
+
+          
+
         </div>
+        
       </div>
         <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
         <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="fa fa-angle-right"></i></a>
@@ -223,4 +281,5 @@
  </div>
 </div>
 <!----------- Footer ------------>
+
 {% endblock %}

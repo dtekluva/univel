@@ -43,9 +43,8 @@ def courses(request):
 def course_list(request,id):
     page = 'course_list'
     general = Global.objects.all()[0]
-    courses = Course.objects.filter(category_id = id)
+    courses = Course.objects.filter(category_id = id, is_active = True)
     footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
-    
 
     return render(request, 'course_list.html', { 'page': page, 'general':general, 'courses':courses, 'footer_courses':footer_courses })
 
@@ -108,8 +107,12 @@ def apply(request, course_id):
         return HttpResponse(json.dumps({"response":status, "message": message}))
 
 
+def upcoming_courses(request):
 
+    upcoming_courses_query = Course.objects.filter(is_upcoming = True).order_by('-id')
+    courses = serializers.serialize("json", list(upcoming_courses_query) )
 
+    return HttpResponse(courses)
 
 
 
