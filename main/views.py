@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from django.contrib.auth.decorators import login_required, permission_required
 from snippet import helpers
 from .choices import *
-from main.models import Carousel, Global, Category, Course, Take_away, Testimonials, Requirement, Center_section, Center_section_cards
+from main.models import Carousel, Global, Category, Course, Take_away, Testimonials, Requirement, Center_section, Center_section_cards, Application
 
 # from rest_framework import serializers
 # Create your views here.
@@ -79,22 +79,33 @@ def about_us(request):
 
 
 def apply(request, course_id):
-    print((request.POST))
-
-    exempted_fields = ["address", "full_name", "coupon"]
-    cleaned_form = helpers.clean(request.POST, exempted_fields)
-
-    full_name   = cleaned_form['full_name']
-    email       = cleaned_form['email']
-    address     = cleaned_form['address']
-    phone       = cleaned_form['phone']
-    coupon      = cleaned_form['coupon']
-    payment     = dict(PAYMENT_CHOICES)[cleaned_form['choice']]
-    message     = "success"
-
     
-    return HttpResponse(json.dumps({"response":message}))
+    try:
 
+        exempted_fields = ["address", "full_name", "coupon"]
+        cleaned_form = helpers.clean(request.POST, exempted_fields)
+
+        full_name   = cleaned_form['full_name']
+        email       = cleaned_form['email']
+        address     = cleaned_form['address']
+        phone       = cleaned_form['phone']
+        coupon      = cleaned_form['coupon']
+        course_id   = cleaned_form['_course_id']
+        payment     = int(cleaned_form['choice']) #get choice and convert to integer
+        
+        status     = "success"
+        message     = "added application successfully"
+
+        new_application = Application(full_name= full_name, email= email, address= address, phone= phone, coupon= coupon, payment= payment, course_id = course_id)
+
+        new_application.save()
+
+        return HttpResponse(json.dumps({"response":status, "message": message}))
+
+    except:
+        status     = "fail"
+        message    = "unknown error occured"
+        return HttpResponse(json.dumps({"response":status, "message": message}))
 
 
 

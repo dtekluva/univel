@@ -30,6 +30,7 @@
      <form id = "application_form" class = "application_form" action="#" method= "POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div hidden id = 'course_id'>{{ course.id }}</div>
+        <input hidden id = '_course_id' name = "_course_id" value = '{{ course.id }}'>
 
         <div class="col-md-7 padLR rightpage">
           <h2>Fill The Registration Form</h2>
