@@ -7,7 +7,7 @@ var host = window.location.hostname == 'localhost'
 window.onload = function(){
 
   var men = $('.button')
-  console.log(men)
+  // console.log(data)
   
   $('form').on('submit', e => {
       e.preventDefault()
@@ -15,7 +15,7 @@ window.onload = function(){
       console.log(data)
       swal({
         title: "Are you sure?",
-        text: `Hi ${data[0][1].value}, Do you confirm that the data supplied is accurate ?.`,
+        text: `Hi ${data[0][2].value}, Do you confirm that the data supplied is accurate ?.`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
