@@ -20,6 +20,9 @@ class Global(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return 'Global Settings'
 
+    class Meta:
+        verbose_name_plural = "Global Settings"
+
 class Carousel(models.Model):
     image1          = models.FileField(null = True, upload_to='uploads/carousel_imgs/')
     image2          = models.FileField(null = True, upload_to='uploads/carousel_imgs/')

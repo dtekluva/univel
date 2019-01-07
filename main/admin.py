@@ -5,7 +5,7 @@ from main.models import Course, Carousel, Category, Center_section_cards, Center
 # Register your models here.
 
 class GlobalAdmin(admin.ModelAdmin):
-    list_display = ('id',)
+    list_display = ('email',)
 
 class CarouselAdmin(admin.ModelAdmin):
     list_display = ('id',)

@@ -21,11 +21,11 @@ def index(request):
     page = 'index'
     carousel = Carousel.objects.all()[0]
     general = Global.objects.all()[0]
-    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    footer_courses = Course.objects.filter(is_active = True)[:4] #COURSES TO SHOW AT FOOTER
     testimonials = Testimonials.objects.all()
     center_section = Center_section.objects.all()[0]
-    center_section_cards = Center_section_cards.objects.all()[:3]
-    upcoming_courses = Course.objects.filter(is_upcoming = True)
+    center_section_cards = Center_section_cards.objects.all().order_by('-id')[:3]
+    upcoming_courses = Course.objects.filter(is_upcoming = True, is_active = True).order_by('-id')
 
     return render(request, 'index.html', { 'page': page, 'general':general, 'carousel':carousel, 'footer_courses':footer_courses, 'testimonials' : testimonials, 'center_section':center_section, 'center_section_cards':center_section_cards, 'upcoming_courses':upcoming_courses })
 
@@ -35,7 +35,7 @@ def courses(request):
     carousel = Carousel.objects.all()[0]
     general = Global.objects.all()[0]
     categories = Category.objects.all()
-    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    footer_courses = Course.objects.filter(is_active = True)[:4] #COURSES TO SHOW AT FOOTER
 
     return render(request, 'courses.html', { 'page': page, 'general':general, 'carousel':carousel, 'categories':categories, 'footer_courses':footer_courses})
 
@@ -44,7 +44,7 @@ def course_list(request,id):
     page = 'course_list'
     general = Global.objects.all()[0]
     courses = Course.objects.filter(category_id = id, is_active = True)
-    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    footer_courses = Course.objects.filter(is_active = True) #COURSES TO SHOW AT FOOTER
 
     return render(request, 'course_list.html', { 'page': page, 'general':general, 'courses':courses, 'footer_courses':footer_courses })
 
@@ -54,6 +54,7 @@ def form(request, course_id):
     general = Global.objects.all()[0]
     footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
     course      = Course.objects.get(pk = course_id)
+
     return render(request, 'form.html', { 'page': page, 'general':general, 'footer_courses':footer_courses, 'course':course })
 
 
@@ -64,7 +65,7 @@ def detailed_course_view(request, id):#ID ---> course__id
     course      = Course.objects.get(pk = id)
     takeaways   = Take_away.objects.filter(course_id = course.id)
     requirements = Requirement.objects.filter(course_id = course.id)
-    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    footer_courses = Course.objects.filter(is_active = True)[:4] #COURSES TO SHOW AT FOOTER
 
     return render(request, 'detailed_course_view.html', { 'page': page, 'general':general, 'course':course, 'category':category, 'takeaways': takeaways, 'requirements':requirements, 'footer_courses':footer_courses })
 
@@ -72,7 +73,7 @@ def detailed_course_view(request, id):#ID ---> course__id
 def about_us(request):
     page = 'about_us'
     general = Global.objects.all()[0]
-    footer_courses = Course.objects.all()[:4] #COURSES TO SHOW AT FOOTER
+    footer_courses = Course.objects.filter(is_active = True) #COURSES TO SHOW AT FOOTER
 
     return render(request, 'about_us.html', { 'page': page, 'general':general, 'footer_courses':footer_courses })
 
@@ -109,7 +110,7 @@ def apply(request, course_id):
 
 def upcoming_courses(request):
 
-    upcoming_courses_query = Course.objects.filter(is_upcoming = True).order_by('-id')
+    upcoming_courses_query = Course.objects.filter(is_upcoming = True, is_active = True).order_by('-id')
     courses = serializers.serialize("json", list(upcoming_courses_query) )
 
     return HttpResponse(courses)
