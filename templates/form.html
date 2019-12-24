@@ -59,13 +59,44 @@
             <label for="coupon">Do you have a coupon code?</label>
             <input id = "coupon" name = "coupon"  type="text" class="form-control">
            </div>
-           <button class="submit">Register</button>
-        </div>
-
-     </form>
+           <div class = "row">
+             <button class="col-md-2 submit">Apply and pay later</button>
+             <hr>
+             <hr>
+            
+             <button class="col-md-2 submit" type="button" onclick="payWithPaystack()">Apply and Pay with paystack </button> 
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
- </div>
 </div>
-
+<script>
+    function payWithPaystack(){
+      var handler = PaystackPop.setup({
+        key: 'pk_test_bf5224b428599d3526131c03634b47536ee4bb81',
+        email: 'customer@email.com',
+        amount: 10000,
+        ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        metadata: {
+           custom_fields: [
+              {
+                  display_name: "Mobile Number",
+                  variable_name: "mobile_number",
+                  value: "+2348012345678"
+              }
+           ]
+        },
+        callback: function(response){
+            alert('success. transaction ref is ' + response.reference);
+        },
+        onClose: function(){
+            alert('window closed');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 {% endblock %}

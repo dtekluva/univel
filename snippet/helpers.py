@@ -28,9 +28,13 @@ def clean(txt, exempt = "none"):
 
     new_dict = {}
     for key in txt:
-        new_dict[key] = ((txt[key]).strip())
-        if key not in exempt:
-            new_dict[key] = (new_dict[key]).replace(" ","").lower()
+        if isinstance(str, type(txt[key])):
+            new_dict[key] = ((txt[key]).strip())
+            if key not in exempt:
+                new_dict[key] = (new_dict[key]).replace(" ","").lower()
+        else:
+            new_dict[key] = txt[key]
+
     return new_dict
 
 
