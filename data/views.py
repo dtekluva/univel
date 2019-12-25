@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db import models
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from itertools import chain #allow for merging multiple querysets frorm different models
@@ -8,6 +9,8 @@ from datetime import datetime, timezone
 from django.contrib.auth.decorators import login_required, permission_required
 from data.models import *
 from snippet import helpers
+from django.db.models import Count, F
+from django.db.models.functions import Cast
 
 
 host = 'http://localhost:8000/'
@@ -43,6 +46,17 @@ def register(request):
             status     = "fail"
             message    = "unknown error occured"
             return HttpResponse(json.dumps({"response":status, "message": message}))
+
+@csrf_exempt
+def view_users(request):
+
+    students = Student.objects.annotate(joined =( Cast('date_joined', models.CharField()))).annotate(Count('lyric')).values("id", "joined", username = F('user__username'), lyrics = F('lyric__count'))
+
+    response =  HttpResponse(json.dumps({"response":"success", "message": {"data": list(students)}}))
+    response = CORS.allow_all(response)
+    return response
+    
+    
 
 @csrf_exempt
 def add_lyrics(request):

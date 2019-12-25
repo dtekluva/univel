@@ -23,6 +23,7 @@ urlpatterns = [
     path('add_lyrics/', views.add_lyrics, name='add_lyrics'),
     path('view_lyrics/', views.view_lyrics, name='view_lyrics'),
     path('delete_lyrics/', views.delete_lyrics, name='delete_lyrics'),
+    path('view_users/', views.view_users, name='view_users'),
     # path('about_us', views.about_us, name='about_us'),
     # path('course_list/<int:id>/', views.course_list, name='course_list'),
     # path('detailed_course_view/<int:id>/', views.detailed_course_view, name='detailed_course_view'),

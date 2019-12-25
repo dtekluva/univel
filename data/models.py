@@ -15,6 +15,7 @@ class Student(models.Model):
     first_name      = models.CharField(null = True, default="", max_length=200)
     last_name      = models.CharField(null = True, default="", max_length=200)
     phone           = models.IntegerField(null = True, unique=False, default = "")
+    lyrics_count    = models.IntegerField(null = True, unique=False)
     email           = models.EmailField(null = True, default="", max_length=200)
     details         = models.TextField(null = True, default="")
     date_joined     = models.DateTimeField(null = True, blank = True)
@@ -38,6 +39,7 @@ class Student(models.Model):
         new_student = Student(user = new_user, phone = phone, first_name = firstname, last_name = lastname, email = email, details = details)
         new_student.date_joined = datetime.now()
         new_student.save()
+        print(new_student.date_joined)
 
         new_student.add_token()
 
@@ -51,6 +53,13 @@ class Student(models.Model):
         new_lyrics.save()
 
         return new_lyrics
+
+    def get_lyrics_count(self):
+
+        lyrics_count = self.lyric_set.all().count()
+
+        return lyrics_count
+
 
     def add_token(self):
 
