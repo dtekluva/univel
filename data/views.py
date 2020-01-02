@@ -25,13 +25,13 @@ def register(request):
             exempted_fields = ["details",]
             cleaned_form = helpers.clean(data, exempted_fields)
             
-            username   = cleaned_form['username']
+            username    = cleaned_form['username']
             firstname   = cleaned_form['firstname']
-            lastname   = cleaned_form['lastname']
+            lastname    = cleaned_form['lastname']
             email       = cleaned_form['email']
             phone       = cleaned_form['phone']
-            details      = cleaned_form['details']
-            password   = cleaned_form['password']#
+            details     = cleaned_form['details']
+            password    = cleaned_form['password']#
 
             # print(username, firstname , lastname , email, password, phone, details)
 
@@ -44,7 +44,7 @@ def register(request):
 
         except:
             status     = "fail"
-            message    = "unknown error occured"
+            message    = "unknown error occured, Either the username is already exists or the datetype is not correct. if using python requests make sure you used the json module to 'json.dumps()' the data"
             return HttpResponse(json.dumps({"response":status, "message": message}))
 
 @csrf_exempt
